@@ -29,15 +29,19 @@ def heart_disease_prediction(input_data):
 def main():
     # Page configuration
     st.set_page_config(page_title="Multi-Disease Prediction App", page_icon="💡", layout="centered")
-    
-    # Sidebar for Navigation
-    st.sidebar.title("🔍 Disease Prediction")
-    st.sidebar.markdown("<h3 style='margin-top: 0;'>Select ></h3>", unsafe_allow_html=True)  # Adding "Select >" text
-    choice = st.sidebar.radio("Choose a Disease:", ["Diabetes Prediction", "Heart Disease Prediction"])
-    
-    # Styling for Results
+
+    # Custom CSS for Sidebar Toggle
     st.markdown("""
         <style>
+            [data-testid="stSidebar"]::before {
+                content: "Select >";
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: #333;
+                position: absolute;
+                top: 10px;
+                left: 10px;
+            }
             .result-success {
                 background-color: #D4EDDA;
                 color: #155724;
@@ -65,6 +69,10 @@ def main():
         </style>
     """, unsafe_allow_html=True)
 
+    # Sidebar for Navigation
+    st.sidebar.title("🔍 Disease Prediction")
+    choice = st.sidebar.radio("Choose a Disease:", ["Diabetes Prediction", "Heart Disease Prediction"])
+
     # Diabetes Prediction
     if choice == "Diabetes Prediction":
         st.title("🩺 Diabetes Prediction Web App")
@@ -82,7 +90,6 @@ def main():
 
         if st.button("🧪 Predict Diabetes"):
             result = diabetes_prediction([Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age])
-            
             if "not diabetic" in result:
                 st.markdown(f'<div class="result-success">{result}</div>', unsafe_allow_html=True)
                 st.balloons()
@@ -112,7 +119,6 @@ def main():
 
         if st.button("💓 Predict Heart Disease"):
             result = heart_disease_prediction([age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal])
-            
             if "not at risk" in result:
                 st.markdown(f'<div class="result-success">{result}</div>', unsafe_allow_html=True)
                 st.balloons()
