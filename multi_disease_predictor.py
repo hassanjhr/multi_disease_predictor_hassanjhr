@@ -31,11 +31,9 @@ def main():
     st.set_page_config(page_title="Multi-Disease Prediction App", page_icon="💡", layout="centered")
     
     # Sidebar for Navigation
-st.sidebar.title("🔍 Disease Prediction")
-st.sidebar.markdown("<h3>Select ></h3>", unsafe_allow_html=True)  # Adding "Select >" text
-
-# Add a dropdown radio button for navigation
-choice = st.sidebar.radio("Choose a Disease:", ["Diabetes Prediction", "Heart Disease Prediction"])
+    st.sidebar.title("🔍 Disease Prediction")
+    st.sidebar.markdown("<h3 style='margin-top: 0;'>Select ></h3>", unsafe_allow_html=True)  # Adding "Select >" text
+    choice = st.sidebar.radio("Choose a Disease:", ["Diabetes Prediction", "Heart Disease Prediction"])
     
     # Styling for Results
     st.markdown("""
