@@ -31,8 +31,11 @@ def main():
     st.set_page_config(page_title="Multi-Disease Prediction App", page_icon="💡", layout="centered")
     
     # Sidebar for Navigation
-    st.sidebar.title("🔍 Disease Prediction")
-    choice = st.sidebar.radio("Select a Disease:", ["Diabetes Prediction", "Heart Disease Prediction"])
+st.sidebar.title("🔍 Disease Prediction")
+st.sidebar.markdown("<h3>Select ></h3>", unsafe_allow_html=True)  # Adding "Select >" text
+
+# Add a dropdown radio button for navigation
+choice = st.sidebar.radio("Choose a Disease:", ["Diabetes Prediction", "Heart Disease Prediction"])
     
     # Styling for Results
     st.markdown("""
@@ -101,13 +104,13 @@ def main():
         trestbps = st.number_input('Resting Blood Pressure', min_value=0)
         chol = st.number_input('Serum Cholesterol in mg/dL', min_value=0)
         fbs = st.number_input('Fasting Blood Sugar (>120 mg/dL: 1, otherwise: 0)', min_value=0, max_value=1)
-        restecg = st.number_input('Resting Electrocardiographic Results (0-2)', min_value=0, max_value=5)
+        restecg = st.number_input('Resting Electrocardiographic Results (0-5)', min_value=0, max_value=5)
         thalach = st.number_input('Maximum Heart Rate Achieved', min_value=0)
         exang = st.number_input('Exercise Induced Angina (0 = No, 1 = Yes)', min_value=0, max_value=1)
         oldpeak = st.number_input('ST Depression Induced by Exercise', min_value=0.0, format="%.2f")
-        slope = st.number_input('Slope of the Peak Exercise ST Segment (0-2)', min_value=0, max_value=5)
-        ca = st.number_input('Number of Major Vessels Colored by Fluoroscopy (0-3)', min_value=0, max_value=5)
-        thal = st.number_input('Thalassemia (0-3)', min_value=0, max_value=5)
+        slope = st.number_input('Slope of the Peak Exercise ST Segment (0-5)', min_value=0, max_value=5)
+        ca = st.number_input('Number of Major Vessels Colored by Fluoroscopy (0-5)', min_value=0, max_value=5)
+        thal = st.number_input('Thalassemia (0-5)', min_value=0, max_value=5)
 
         if st.button("💓 Predict Heart Disease"):
             result = heart_disease_prediction([age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal])
